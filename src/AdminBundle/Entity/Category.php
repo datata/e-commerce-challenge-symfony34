@@ -5,12 +5,12 @@ namespace AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * category
+ * Category
  *
  * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="AdminBundle\Repository\categoryRepository")
+ * @ORM\Entity(repositoryClass="AdminBundle\Repository\CategoryRepository")
  */
-class category
+class Category
 {
     /**
      * @var int
@@ -26,7 +26,7 @@ class category
      *
      * @ORM\Column(name="model", type="string", length=50, unique=true)
      */
-    private $model;
+    public $model;
 
 
     /**

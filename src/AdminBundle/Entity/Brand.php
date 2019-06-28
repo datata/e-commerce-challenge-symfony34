@@ -5,12 +5,12 @@ namespace AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * brand
+ * Brand
  *
  * @ORM\Table(name="brand")
- * @ORM\Entity(repositoryClass="AdminBundle\Repository\brandRepository")
+ * @ORM\Entity(repositoryClass="AdminBundle\Repository\BrandRepository")
  */
-class brand
+class Brand
 {
     /**
      * @var int
