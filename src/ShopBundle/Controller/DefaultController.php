@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use ShopBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 
+
+
 class DefaultController extends Controller
 {
     /**
@@ -15,11 +17,16 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AdminBundle:Product');
         
+        
+        $product = $repository->findAll();
+        // dump($product);
+        // die();
 
 
-
-        return $this->render('@Shop/Default/index.html.twig');
+        return $this->render('@Shop/Default/index.html.twig',['products'=>$product]);
     }
 
     /**
