@@ -1,0 +1,79 @@
+.centrado {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+
+    .cproduct {
+
+        display: flex;
+        flex-direction: row;
+        padding: 2em;
+        color: black;
+        height: 520px;
+        width: 520px;
+
+        .detailproduct {
+
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+
+
+            .cproduct1 {
+                display: flex;
+                flex-direction: column;
+                height: 100px;
+                width: 456px;
+                background-color: white;
+                padding: 1em;
+            }
+
+            .cproduct2 {
+                height: 400px;
+                width: 456px;
+                background-color: tomato;
+                padding: 1em;
+
+                span{
+                    .counterproduct{
+                        display: flex;
+                        flex-direction: row;
+                        
+                        button{
+                            height: 40px;
+                            width:  40px;
+                            margin-bottom: .5rem;
+                        }
+                        input{
+                            height: 40px;
+                            width:  40px;
+                            text-align: center;
+                        }
+                        
+                    }
+                }
+            }
+
+            .cproduct3 {
+                height: 300px;
+                width: 456px;
+                background-color: white;
+                padding: 1em;
+
+            }
+
+            .cproduct4 {
+                height: 100px;
+                width: 456px;
+                background-color: tomato;
+                padding: 1em;
+
+            }
+        }
+
+    }
+}

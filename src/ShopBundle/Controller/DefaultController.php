@@ -48,4 +48,22 @@ class DefaultController extends Controller
         return new Response("Usuario creado" . $user->getId());
     }
 
+    /**
+     * @Route("/{id}")
+     */
+    public function cardProduct($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AdminBundle:Product');
+        
+        $product = $repository->find($id);
+
+        if(!$product) return new Response("No existe producto");
+        
+        return $this->render('@Shop/Default/cardProduct.html.twig',['products'=>$product]);
+        
+    }
+
+
+
 }

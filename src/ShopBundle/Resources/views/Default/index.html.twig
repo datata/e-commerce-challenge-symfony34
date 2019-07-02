@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-    <div class="container">
-        <div class="row">
+    <div class="container" >
+        <div class="row" style="padding:3em;">
             {% for product in products%}
 
-                <div class="col" style="color:black; padding:3em;">
-                    <a href="#">
-                        <div class="card mx-auto" style="width: 15rem;">
+                <div class="col-lg-4 col-md-6 col-sm-12" style="color:black; padding:2em;">
+                    <a href="/shop/{{product.id}}">
+                        <div class="card">
                             <img alt="..." class="card-img-top" src="../img/{{product.category}}">
                             <div class="card-body">
-                                <h5 class="card-title text-center">{{product.product}}</h5>
+                                <h5 class="card-title">{{product.product}}</h5>
                                 <p class="card-text text-center">{{product.price}}€</p>
                             </div>
                         </div>
                     </a>
                 </div>
+
             {% endfor %}
         </div>
     </div>

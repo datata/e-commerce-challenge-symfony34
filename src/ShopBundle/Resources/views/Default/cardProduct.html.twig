@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/cardproduct.css')}}">{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="centrado">
+    <div class="cproduct">
+
+        <img alt="..." class="card-img-top" src="../img/{{products.category}}">
+
+
+    </div>
+
+    <div class="cproduct">
+        <div class="detailproduct">
+
+            <div class="cproduct1">
+                <span>
+                    {{products.product}}-{{products.brand}}
+                </span>
+                <span>
+                    <h4>
+                        {{products.price}}€
+                    </h4>
+                </span>
+            </div>
+            <div class="cproduct2">
+                <span>
+                    <h5>
+                        Marca:{{products.product}}-{{products.brand}}
+                    </h5>
+                </span>
+                <span>
+                    <h5>Envio</h5>
+                </span>
+                <span>   
+
+                    <h5>Cantidad:</h5>
+                     <div class="counterproduct">
+                            <button>-</button>
+                            <input type="text" id="number" value="0" />
+                            <button>+</button>
+                     </div>
+                </span>
+                <span>
+                        <h5>Disponibilidad</h5>
+                </span>
+                
+                <span>
+                        <button>Añadir a la cesta</button>
+                </span>
+                
+
+
+
+            </div>
+            <div class="cproduct3">
+                    <span>
+                            Redes sociales
+                    </span>
+
+            </div>
+            <div class="cproduct4"></div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
