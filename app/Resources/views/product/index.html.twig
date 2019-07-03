@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Products list</h1>
+
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Genre</th>
+                <th>Iduser</th>
+                <th>Createat</th>
+                <th>Updateat</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                <td>{{ product.product }}</td>
+                <td>{{ product.brand }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.genre }}</td>
+                <td>{{ product.idUser }}</td>
+                <td>{% if product.createAt %}{{ product.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if product.updateAt %}{{ product.updateAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a style="color:white;" href="{{ path('product_show', { 'id': product.id }) }}"><i class="fa fa-eye"></i></a>
+                        </li>
+                        <li>
+                            <a style="color:white;" href="{{ path('product_edit', { 'id': product.id }) }}"><i class="fa fa-edit"></i></i></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        
+            <a href="{{ path('product_new') }}"><input type="submit" value="Crear producto" /></a>
+        
+    </ul>
+{% endblock %}
