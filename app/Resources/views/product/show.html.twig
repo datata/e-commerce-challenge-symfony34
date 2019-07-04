@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Product</h1>
 
-    <table>
+    <table class="table table-dark">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -44,17 +44,19 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('product_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('product_edit', { 'id': product.id }) }}">Edit</a>
-        </li>
-        <li>
+    
+    <div>
+            <a href="{{ path('product_index') }}" style="color:white;">Back to the list</a>
+    </div>
+        
+        <div>
+            <a href="{{ path('product_edit', { 'id': product.id }) }}" style="color:white;">Edit</a>
+        </div>
+        
+        
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input  class="btn btn-primary" type="submit" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        
+    
 {% endblock %}
