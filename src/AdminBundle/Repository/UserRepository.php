@@ -1,6 +1,6 @@
 <?php
 
-namespace ShopBundle\Repository;
+namespace AdminBundle\Repository;
 
 /**
  * UserRepository
