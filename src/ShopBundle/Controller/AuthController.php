@@ -10,15 +10,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use AdminBundle\Entity\User;
 use AdminBundle\Form\UserType;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
-     * @Route("/register")
+     * @Route("/")
      */
 
 class AuthController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/register")
      */
     public function addUser(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -50,4 +51,26 @@ class AuthController extends Controller
             ['form' => $form->createView()]
         );
     }
+
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
+    {
+        dump($request);
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+    
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+    
+        return $this->render('@Shop/Default/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ]);
+    }
+
+
+
 }
