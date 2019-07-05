@@ -35,6 +35,9 @@ class AuthController extends Controller
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
 
+            //3b) $roles
+            $user->setRoles(array('ROLE_USER'));
+
             // 4) save the User!
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
