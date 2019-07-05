@@ -19,7 +19,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AuthController extends Controller
 {
     /**
-     * @Route("/register")
+     * @Route("/register", name="register")
      */
     public function addUser(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
