@@ -11,7 +11,7 @@
                 <th>Id</th>
                 <th>Product</th>
                 <th>Brand</th>
-                <th>Category</th>
+                <th>Photo</th>
                 <th>Genre</th>
                 <th>Iduser</th>
                 <th>Createat</th>
@@ -26,7 +26,7 @@
                 <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
                 <td>{{ product.product }}</td>
                 <td>{{ product.brand }}</td>
-                <td>{{ product.category }}</td>
+                <td>{{ product.photo }}</td>
                 <td>{{ product.genre }}</td>
                 <td>{{ product.idUser }}</td>
                 <td>{% if product.createAt %}{{ product.createAt|date('Y-m-d H:i:s') }}{% endif %}</td>

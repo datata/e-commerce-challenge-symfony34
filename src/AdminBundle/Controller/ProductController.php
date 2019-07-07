@@ -45,6 +45,10 @@ class ProductController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $product->setCreateAt(new \DateTime('now'));
+            $product->setUpdateAt(new \DateTime('now'));
+
             $em->persist($product);
             $em->flush();
             dump($product->getId());
@@ -86,6 +90,8 @@ class ProductController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $product->setUpdateAt(new \DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('product_edit', array('id' => $product->getId()));
