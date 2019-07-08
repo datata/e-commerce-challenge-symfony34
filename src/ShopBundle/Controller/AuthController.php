@@ -13,8 +13,8 @@ use AdminBundle\Form\UserType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
-     * @Route("/")
-     */
+* @Route("/")
+*/
 
 class AuthController extends Controller
 {
@@ -61,7 +61,7 @@ class AuthController extends Controller
      */
     public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
     {
-        dump($request);
+       
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
     
@@ -74,6 +74,14 @@ class AuthController extends Controller
         ]);
     }
 
+
+     /**
+     * @Route("/userpanel", name="user_profile")
+     */
+    public function PanelAction()
+    {
+        return $this->render('@Shop/Default/userpanel.html.twig');
+    }    
 
 
 }
