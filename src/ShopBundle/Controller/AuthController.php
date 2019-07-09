@@ -21,7 +21,7 @@ class AuthController extends Controller
     /**
      * @Route("/register", name="register")
      */
-    public function addUser(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function addUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, AuthenticationUtils $authenticationUtils)
     {
         // 1) build the form
         $user = new User();
@@ -46,7 +46,17 @@ class AuthController extends Controller
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
 
-            return $this->redirectToRoute('index_shop');
+            $error = $authenticationUtils->getLastAuthenticationError();
+
+            
+        return $this->render(
+            '@Shop/Default/login.html.twig',
+            ['last_username' => $user->getEmail(),
+            'error'         => $error,
+            ]
+        );
+    
+            
         }
 
         return $this->render(
@@ -73,15 +83,6 @@ class AuthController extends Controller
             'error'         => $error,
         ]);
     }
-
-
-     /**
-     * @Route("/userpanel", name="user_profile")
-     */
-    public function PanelAction()
-    {
-        return $this->render('@Shop/Default/userpanel.html.twig');
-    }    
 
 
 }

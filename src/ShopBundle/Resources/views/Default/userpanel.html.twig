@@ -3,25 +3,32 @@
 
 {% block body %}
 
+{% if app.user %}
 
 
-    <div style="display:flex;align-items:center;">
-            
-            <div class="card text-white bg-primary mb-3">
-                    <div class="card-header">Profile</div>
-                    <div class="card-body">
-                        <h4 class="card-title">Usuario:<h1 class="card-text"> {{app.user.username}}</h1></h4>
-                        
-                        
-                <h4 class="card-title">Id:<h5 class="card-text"> {{app.user.id}}</h5></h4>
-                
-                <h4 class="card-title">Email:<h5 class="card-text"> {{app.user.email}}</h5></h4>
-                
-                
-            </div>
+<div style="display:flex;align-items:center;">
+
+    <div class="card text-white bg-primary mb-3">
+        <div class="card-header">Profile</div>
+        <div class="card-body">
+            <h4 class="card-title">Usuario:<h5 class="card-text"> {{app.user.username}}</h5>
+            </h4>
+            <h4 class="card-title">Id:<h5 class="card-text"> {{app.user.id}}</h5>
+            </h4>
+            <h4 class="card-title">Email:<h5 class="card-text"> {{app.user.email}}</h5>
+            </h4>
         </div>
-        
     </div>
+
+    {% else %}
+    <h3>Usuario no logueado</h3>
+    <a href="{{path('login')}}"><button class="btn btn-primary">Pincha aqui y logueate</button></a>
+    {% endif %}
+
+
+</div>
+
+
 
 
 

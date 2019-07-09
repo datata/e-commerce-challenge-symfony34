@@ -27,7 +27,10 @@ security:
                 target: /shop/
 
     access_control:
+      
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/userprofile, roles: ROLE_USER }
+
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
