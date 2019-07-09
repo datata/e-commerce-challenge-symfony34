@@ -29,9 +29,10 @@ class Product
     private $product;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="brand", type="string", length=50)
+     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="products")
+     * @ORM\JoinColumn(name="brand", referencedColumnName="id")
      */
     private $brand;
 
@@ -286,5 +287,28 @@ class Product
     {
         return $this->price;
     }
-}
 
+    /**
+     * Set category
+     *
+     * @param string $category
+     *
+     * @return Product
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+}

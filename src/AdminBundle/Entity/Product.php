@@ -29,9 +29,10 @@ class Product
     private $product;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="brand", type="string", length=50)
+     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="products")
+     * @ORM\JoinColumn(name="brand", referencedColumnName="id")
      */
     private $brand;
 

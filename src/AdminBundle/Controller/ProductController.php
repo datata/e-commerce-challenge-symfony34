@@ -51,7 +51,7 @@ class ProductController extends Controller
 
             $em->persist($product);
             $em->flush();
-            dump($product->getId());
+
             return $this->redirectToRoute('product_show', array('id' => $product->getId()));
         }
 
@@ -65,10 +65,10 @@ class ProductController extends Controller
      * Finds and displays a product entity.
      *
      * @Route("/{id}", name="product_show", methods="GET")
+     
      */
     public function showAction(Product $product)
     {
-        dump($product);
         $deleteForm = $this->createDeleteForm($product);
 
         return $this->render('product/show.html.twig', array(
@@ -92,6 +92,7 @@ class ProductController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             $product->setUpdateAt(new \DateTime('now'));
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('product_edit', array('id' => $product->getId()));
