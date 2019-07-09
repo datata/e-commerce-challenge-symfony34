@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
 use ShopBundle\Entity\Cart;
-use AdminBundle\AdminBundle;
+
 
 /**
  * @Route("/cart", name="index_shop")
@@ -33,6 +33,7 @@ class CartController extends Controller
         $cart = $em->getRepository('ShopBundle:Cart');
 
         $cart = $cart->findOneBy(array('idproducto'=>$id, 'iduser'=>$user));
+
                
         if(!$cart)
         {
@@ -44,9 +45,9 @@ class CartController extends Controller
         else{
             $cart->setQuantityproduct($cart->getQuantityproduct()+1);
         }
-
-        $em->flush();
+        dump($cart);
         $em->persist($cart);             
+        $em->flush();
 
         return new Response("Listo!");
 
