@@ -10,18 +10,35 @@ use Symfony\Component\HttpFoundation\Response;
 use ShopBundle\Entity\Cart;
 
 
+
 /**
- * @Route("/cart", name="index_shop")
+ * @Route("/cart")
  */
 
 class CartController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/{user}", name="cart_user")
      */
-    public function indexAction()
+    public function indexAction($user)
     {   
-        return $this->render('@Shop/Default/cart.html.twig');
+        try{
+        
+       $em = $this->getDoctrine()->getManager();
+       $query = $em->createQuery('SELECT p.category AS categoria, p.price AS precio, c.quantityproduct AS cantidad, p.photo AS photo
+       FROM ShopBundle:Cart AS c, AdminBundle:Product AS p
+       WHERE c.idproducto= p.id
+       and c.iduser=:user')->setParameter('user', $user);
+
+       $sunglasses= $query->getResult();
+
+       dump($sunglasses);
+
+       return $this->render('@Shop/Default/cart.html.twig',['sunglasses'=>$sunglasses]);
+       }catch(Exception $e){
+           return $e->getMessage();
+       }     
+
     }
 
     /**
@@ -45,7 +62,7 @@ class CartController extends Controller
         else{
             $cart->setQuantityproduct($cart->getQuantityproduct()+1);
         }
-        dump($cart);
+        
         $em->persist($cart);             
         $em->flush();
 
