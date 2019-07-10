@@ -25,7 +25,7 @@ class CartController extends Controller
         try{
         
        $em = $this->getDoctrine()->getManager();
-       $query = $em->createQuery('SELECT p.category AS categoria, p.price AS precio, c.quantityproduct AS cantidad, p.photo AS photo
+       $query = $em->createQuery('SELECT p.category AS categoria, p.price AS precio, c.quantityproduct AS cantidad, p.photo AS photo, p.id AS id
        FROM ShopBundle:Cart AS c, AdminBundle:Product AS p
        WHERE c.idproducto= p.id
        and c.iduser=:user')->setParameter('user', $user);
@@ -69,6 +69,26 @@ class CartController extends Controller
         return new Response("Listo!");
 
     }
+
+    /**
+     * @Route("/delete/{user}/{id}", name="deletecart")
+     */
+    public function deleteAction($id,$user)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $cart = $em->getRepository('ShopBundle:Cart');
+
+        $cart = $cart->findOneBy(array('idproducto'=>$id, 'iduser'=>$user));
+
+
+        $em->remove($cart);             
+        $em->flush();
+
+        return $this->redirectToRoute('index_shop');
+
+    }
+  
 
 
 
