@@ -19,13 +19,13 @@
            
                 <tr>
                     <td><img alt="..." class="card-img-top" src="/img/{{sunglasses.photo}}" style="width:200px;"></td>
-                    <td>{{sunglasses.precio}}€</td>
-                    <td>
+                    <td class="text-center align-middle">{{sunglasses.precio}}€</td>
+                    <td class="text-center align-middle">
                         <a href="{{ path('deleteone_product', { 'id': sunglasses.id, 'user':app.user.id })}}"><i class="fa fa-minus" style="color:white;"></i></a>
                         {{sunglasses.cantidad}}<a href="{{ path('addone_product', { 'id': sunglasses.id, 'user':app.user.id })}}"><i class="fa fa-plus" style="color:white;"></i></a>
                     </td>
-                    <td>{{sunglasses.precio * sunglasses.cantidad}}€</td>
-                    <td><a href="{{ path('delete_product', { 'id': sunglasses.id, 'user':app.user.id })}}">X</a></td>
+                    <td class="text-center align-middle">{{sunglasses.precio * sunglasses.cantidad}}€</td>
+                    <td class="text-center align-middle"><a style="color:white" href="{{ path('delete_product', { 'id': sunglasses.id, 'user':app.user.id })}}">X</a></td>
 
                 </tr>
          
