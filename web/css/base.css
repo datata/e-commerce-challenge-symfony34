@@ -21,7 +21,7 @@
   top: 0;
   /* Stay at the top */
   left: 0;
-  background-color: #111;
+  background-color: white;
   /* Black*/
   overflow-x: hidden;
   /* Disable horizontal scroll */
@@ -39,7 +39,7 @@
   transition: 0.3s;
 }
 .wrapper .sidenav a:hover {
-  color: #f1f1f1;
+  color: red;
 }
 .wrapper .sidenav .closebtn {
   position: absolute;
