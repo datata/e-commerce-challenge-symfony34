@@ -1,130 +1,125 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8" />
-    {# BOOTSTRAP 4#}
-    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/base.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    {% block stylesheets %}{% endblock %}
+    <head>
+        <meta
+        charset="UTF-8"/>
+        {# BOOTSTRAP 4#}
+        <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> {% block stylesheets %}{% endblock %}
 
 
-    <title>
-        {% block title %}MySunglassesShop!
-        {% endblock %}
-    </title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-</head>
+        <title>
+            {% block title %}MySunglassesShop!
+            {% endblock %}
+        </title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    </head>
 
-<body>
-    <div class="wrapper"> 
+    <body>
+        <div class="wrapper">
 
-        <nav class="navbar navbar-expand-lg navbar-light">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 {% if app.user %}
 
                     {% if app.user.roles == ["ROLE_ADMIN"] %}
 
-                <div id="mySidenav" class="sidenav">
-                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                        <a href="#">About</a>
-                        <a href="#">Services</a>
-                        <a href="#">Clients</a>
-                        <a href="{{path('admin_panel')}}">Panel de administrador</a>
-                      </div>
-                    
+                        <div class="sidenav" id="mySidenav">
+                            <a class="closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</a>
+                            <a href="#">About</a>
+                            <a href="#">Services</a>
+                            <a href="#">Clients</a>
+                            <a href="{{path('admin_panel')}}">Panel de administrador</a>
+                        </div>
 
-                {% else %}
-                    <div id="mySidenav" class="sidenav">
-                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                        <a href="#">About</a>
-                        <a href="#">Services</a>
-                        <a href="#">Clients</a>
-                        <a href="#">Contact</a>
-                        <a href="{{path('user_profile')}}">Panel de usuario</a>
 
-                      </div>
-                      
-
-                {% endif %}
-                {% else %}
-                    <div id="mySidenav" class="sidenav">
-                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                        <a href="#">About</a>
-                        <a href="#">Services</a>
-                        <a href="#">Clients</a>
-                        <a href="#">Contact</a>
-                      </div>
-                {% endif %}
-
-                      
-                      <!-- Use any element to open the sidenav -->
-                      <button class="btn" onclick="openNav()">Menu</button>
-
-            <a class="navbar-brand" href="/shop">MySunglassesShop</a>
-            <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto ">
-                    {% if app.user %}
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{path('logout')}}">Logout</a>
-                    </li>
                     {% else %}
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{path('register')}}">Register</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{path('login')}}">Login</a>
-                    </li>
+                        <div class="sidenav" id="mySidenav">
+                            <a class="closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</a>
+                            <a href="#">About</a>
+                            <a href="#">Services</a>
+                            <a href="#">Clients</a>
+                            <a href="#">Contact</a>
+                            <a href="{{path('user_profile')}}">Panel de usuario</a>
+
+                        </div>
+
+
                     {% endif %}
-                </ul>            
-                
-                    <a href="/shop/cart/{{app.user.id}}"><button class="btn btn-outline-success my-2 my-sm-0">Carrito</button></a>
+                {% else %}
+                    <div class="sidenav" id="mySidenav">
+                        <a class="closebtn" href="javascript:void(0)" onclick="closeNav()">&times;</a>
+                        <a href="#">About</a>
+                        <a href="#">Services</a>
+                        <a href="#">Clients</a>
+                        <a href="#">Contact</a>
+                    </div>
+                {% endif %}
 
 
-            </div>
-        </nav>
+                <!-- Use any element to open the sidenav -->
+                <button class="btn" onclick="openNav()">Menu</button>
 
-        
+                <a class="navbar-brand" href="/shop">MySunglassesShop</a>
+                <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto ">
+                        {% if app.user %}
 
-        <main>
-            <div class="mainwrapper">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{path('logout')}}">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{path('register')}}">Register</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{path('login')}}">Login</a>
+                            </li>
+                        {% endif %}
+                    </ul>
 
-                <div class="container">
-                       
-                    {% block body %}{% endblock %}
+                    {% if app.user %}
+                        <a href="/shop/cart/{{app.user.id}}">
+                            <button class="btn btn-outline-success my-2 my-sm-0">Carrito</button>
+                        </a>
+                    {% endif %}
 
                 </div>
+            </nav>
+
+
+            <main>
+                <div class="mainwrapper">
+
+                    <div class="container"> {% block body %}{% endblock %}
+
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Footer -->
+                <footer class="page-footer font-small">
+
+                    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+                        <a href="/shop">
+                            SunglassesShop</a>
+                    </div>
+
+                </footer>
+
             </div>
-        </main>
+            {% block javascripts %}{% endblock %}
+        </body>
 
-        <!-- Footer -->
-        <footer class="page-footer font-small">
+        {# BOOTSTRAP 4 #}
+        <script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-            <div class="footer-copyright text-center py-3">© 2019 Copyright:
-                <a href="/shop">
-                    SunglassesShop</a>
-            </div>
+        <script src="{{ asset('js/sidenav.js') }}"></script>
 
-        </footer>
-
-    </div>
-    {% block javascripts %}{% endblock %}
-</body>
-
-{# BOOTSTRAP 4 #}
-<script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-<script src="{{ asset('js/sidenav.js') }}"></script>
-
-</html>
+    </html>

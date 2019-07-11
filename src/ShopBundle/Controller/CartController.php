@@ -22,7 +22,7 @@ class CartController extends Controller
      */
     public function indexAction($user)
     {   
-        try{
+       try{
         
        $em = $this->getDoctrine()->getManager();
        $query = $em->createQuery('SELECT p.category AS categoria, p.price AS precio, c.quantityproduct AS cantidad, p.photo AS photo, p.id AS id
@@ -30,11 +30,9 @@ class CartController extends Controller
        WHERE c.idproducto= p.id
        and c.iduser=:user')->setParameter('user', $user);
 
-       $sunglasses= $query->getResult();
+       $sunglasses= $query->getResult();       
 
-       dump($sunglasses);
-
-       return $this->render('@Shop/Default/cart.html.twig',['sunglasses'=>$sunglasses]);
+       return $this->render('@Shop/Default/cart.html.twig',['sunglasses'=>$sunglasses, 'totalcompra'=>0]);
        }catch(Exception $e){
            return $e->getMessage();
        }     
@@ -79,13 +77,57 @@ class CartController extends Controller
         $em = $this->getDoctrine()->getManager();
         $cart = $em->getRepository('ShopBundle:Cart');
 
-        $cart = $cart->findOneBy(array('idproducto'=>$id, 'iduser'=>$user));
-
+        $cart = $cart->findOneBy(array('idproducto'=>$id, 'iduser'=>$user));        
 
         $em->remove($cart);             
         $em->flush();
 
         return $this->redirectToRoute('index_shop');
+
+    }
+
+    /**
+     * @Route("/deleteone/{user}/{id}", name="delete_one")
+     */
+    public function deleteoneAction($id,$user)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $cart = $em->getRepository('ShopBundle:Cart');
+
+        $cart = $cart->findOneBy(array('idproducto'=>$id, 'iduser'=>$user));
+
+        if($cart->getQuantityproduct()>1)
+        {
+            $cart->setQuantityproduct($cart->getQuantityproduct()-1); 
+            $em->persist($cart);             
+            $em->flush();   
+            
+        }else{
+            $em->remove($cart);             
+            $em->flush();
+           
+        }
+        return $this->indexAction($user);
+
+    }
+
+    /**
+     * @Route("/addone/{user}/{id}")
+     */
+    public function addOneAction($id,$user)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $cart = $em->getRepository('ShopBundle:Cart');
+
+        $cart = $cart->findOneBy(array('idproducto'=>$id, 'iduser'=>$user));
+
+        $cart->setQuantityproduct($cart->getQuantityproduct()+1); 
+        $em->persist($cart);             
+        $em->flush();        
+         
+        return $this->indexAction($user);
 
     }
   

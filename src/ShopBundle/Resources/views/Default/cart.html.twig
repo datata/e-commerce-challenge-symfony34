@@ -5,23 +5,34 @@
 
 <div class="row" style="padding:3em;">
 
-        {% for sunglasses in sunglasses%}
+    {% for sunglasses in sunglasses%}
 
-            <div class="col-lg-4 col-md-6 col-sm-12" style="color:black; padding:2em;">
-                <a href="/shop">
-                    <div class="card">
-                        <img alt="..." class="card-img-top" src="/img/{{sunglasses.photo}}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{sunglasses.categoria}}</h5>
-                            <p class="card-text text-center">{{sunglasses.precio}}€</p>
-                        </div>
-                    <a href="/shop/cart/delete/{{app.user.id}}/{{sunglasses.id}}">Borrar</a>
-                    </div>
-                </a>
+    <div class="col-lg-4 col-md-6 col-sm-12" style="color:black; padding:2em;">
+        <a href="/shop">
+            <div class="card">
+                <img alt="..." class="card-img-top" src="/img/{{sunglasses.photo}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{sunglasses.categoria}}</h5>
+                    <p class="card-text text-center">{{sunglasses.precio}}€</p>
+                </div>
+                <a href="/shop/cart/delete/{{app.user.id}}/{{sunglasses.id}}">Borrar</a>
+                <a href="/shop/cart/addone/{{app.user.id}}/{{sunglasses.id}}">Sumaruno</a>
+                <p>{{sunglasses.cantidad}}</p>
+                <a href="{{ path('delete_one', { 'id': sunglasses.id, 'user':app.user.id })}}">Borraruno</a>
+
+                <h4>{{sunglasses.precio*sunglasses.cantidad}}€</h4>
+
             </div>
-
-        {% endfor %}
+        </a>
     </div>
+
+    {% set totalcompra =  totalcompra + sunglasses.precio * sunglasses.cantidad %}
+    
+    {% endfor %}
+
+    <p>{{totalcompra}}</p>
+
+</div>
 
 
 
