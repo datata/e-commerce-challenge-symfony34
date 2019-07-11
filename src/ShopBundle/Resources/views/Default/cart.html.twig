@@ -20,10 +20,10 @@
                     <td scope="row"><img alt="..." class="card-img-top" src="/img/{{sunglasses.photo}}" style="width:10em;"></td>
                     <td>{{sunglasses.precio}}€</td>
                     <td>
-                        <a href="{{ path('delete_one', { 'id': sunglasses.id, 'user':app.user.id })}}">-</a>
-                        {{sunglasses.cantidad}}<a href="/shop/cart/addone/{{app.user.id}}/{{sunglasses.id}}">+</a>
+                        <a href="{{ path('deleteone_product', { 'id': sunglasses.id, 'user':app.user.id })}}"><i class="fa fa-minus" style="color:white;"></i></a>
+                        {{sunglasses.cantidad}}<a href="{{ path('addone_product', { 'id': sunglasses.id, 'user':app.user.id })}}"><i class="fa fa-plus" style="color:white;"></i></a>
                     </td>
-                    <td>{{sunglasses.precio * sunglasses.cantidad}}€<a href="/shop/cart/delete/{{app.user.id}}/{{sunglasses.id}}">X</a></td>
+                    <td>{{sunglasses.precio * sunglasses.cantidad}}€<a href="{{ path('delete_product', { 'id': sunglasses.id, 'user':app.user.id })}}">X</a></td>
                 </tr>
             </tbody>
         </table>

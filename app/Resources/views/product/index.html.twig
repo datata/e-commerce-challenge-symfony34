@@ -3,7 +3,11 @@
 {% block body %}
     <h1>Products list</h1>
 
-    <table>
+        
+    <a href="{{ path('product_new') }}"><button class="btn btn-success">Create a new product</button></a>
+        
+
+    <table class="table" style="background-color:white;">
         <thead>
             <tr>
                 <th>Id</th>
@@ -21,7 +25,7 @@
         <tbody>
         {% for product in products %}
             <tr>
-                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                <td><a href="{{ path('product_show', { 'id': product.id }) }}" style="color:black;">{{ product.id }}</a></td>
                 <td>{{ product.product }}</td>
                 <td>{{ product.category }}</td>
                 <td>{{ product.photo }}</td>
@@ -32,12 +36,12 @@
                 <td>{{ product.price }}</td>
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
-                        </li>
+                        
+                            <a href="{{ path('product_show', { 'id': product.id }) }}"><button class="btn btn-primary">Show</button></a>
+                        
+                       
+                            <a href="{{ path('product_edit', { 'id': product.id }) }}"><button class="btn btn-warning">Edit</button></a>
+                        
                     </ul>
                 </td>
             </tr>
@@ -45,9 +49,5 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('product_new') }}">Create a new product</a>
-        </li>
-    </ul>
+    
 {% endblock %}

@@ -69,7 +69,7 @@ class CartController extends Controller
     }
 
     /**
-     * @Route("/delete/{user}/{id}", name="deletecart")
+     * @Route("/delete/{user}/{id}", name="delete_product")
      */
     public function deleteAction($id,$user)
     {
@@ -87,7 +87,7 @@ class CartController extends Controller
     }
 
     /**
-     * @Route("/deleteone/{user}/{id}", name="delete_one")
+     * @Route("/deleteone/{user}/{id}", name="deleteone_product")
      */
     public function deleteoneAction($id,$user)
     {
@@ -113,7 +113,7 @@ class CartController extends Controller
     }
 
     /**
-     * @Route("/addone/{user}/{id}")
+     * @Route("/addone/{user}/{id}", name="addone_product")
      */
     public function addOneAction($id,$user)
     {
