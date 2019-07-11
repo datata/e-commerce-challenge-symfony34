@@ -32,7 +32,7 @@ class CartController extends Controller
 
        $sunglasses= $query->getResult();       
 
-       return $this->render('@Shop/Default/cart.html.twig',['sunglasses'=>$sunglasses, 'totalcompra'=>0]);
+       return $this->render('@Shop/Default/cart.html.twig',['sunglasses'=>$sunglasses, 'totalcompra'=>0, 'totalproductos'=>0, 'articulos'=>0]);
        }catch(Exception $e){
            return $e->getMessage();
        }     
@@ -64,7 +64,7 @@ class CartController extends Controller
         $em->persist($cart);             
         $em->flush();
 
-        return new Response("Listo!");
+        return $this->indexAction($user);        
 
     }
 
@@ -82,7 +82,7 @@ class CartController extends Controller
         $em->remove($cart);             
         $em->flush();
 
-        return $this->redirectToRoute('index_shop');
+        return $this->indexAction($user);
 
     }
 

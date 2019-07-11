@@ -3,37 +3,61 @@
 
 {% block body %}
 
-<div class="row" style="padding:3em;">
 
     {% for sunglasses in sunglasses%}
 
-    <div class="col-lg-4 col-md-6 col-sm-12" style="color:black; padding:2em;">
-        <a href="/shop">
-            <div class="card">
-                <img alt="..." class="card-img-top" src="/img/{{sunglasses.photo}}">
-                <div class="card-body">
-                    <h5 class="card-title">{{sunglasses.categoria}}</h5>
-                    <p class="card-text text-center">{{sunglasses.precio}}€</p>
-                </div>
-                <a href="/shop/cart/delete/{{app.user.id}}/{{sunglasses.id}}">Borrar</a>
-                <a href="/shop/cart/addone/{{app.user.id}}/{{sunglasses.id}}">Sumaruno</a>
-                <p>{{sunglasses.cantidad}}</p>
-                <a href="{{ path('delete_one', { 'id': sunglasses.id, 'user':app.user.id })}}">Borraruno</a>
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Articulo</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Unidades</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row"><img alt="..." class="card-img-top" src="/img/{{sunglasses.photo}}" style="width:10em;"></td>
+                    <td>{{sunglasses.precio}}€</td>
+                    <td>
+                        <a href="{{ path('delete_one', { 'id': sunglasses.id, 'user':app.user.id })}}">-</a>
+                        {{sunglasses.cantidad}}<a href="/shop/cart/addone/{{app.user.id}}/{{sunglasses.id}}">+</a>
+                    </td>
+                    <td>{{sunglasses.precio * sunglasses.cantidad}}€<a href="/shop/cart/delete/{{app.user.id}}/{{sunglasses.id}}">X</a></td>
+                </tr>
+            </tbody>
+        </table>
 
-                <h4>{{sunglasses.precio*sunglasses.cantidad}}€</h4>
+        {% set totalcompra =  totalcompra + sunglasses.precio * sunglasses.cantidad %}
+        {% set totalproductos = totalproductos + sunglasses.cantidad %}
+        {% set articulos = articulos + 1 %}
 
-            </div>
-        </a>
-    </div>
 
-    {% set totalcompra =  totalcompra + sunglasses.precio * sunglasses.cantidad %}
-    
+
+
     {% endfor %}
 
-    <p>{{totalcompra}}</p>
+    <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Articulos en la cesta</th>
+                    <th scope="col">Unidades</th>
+                    <th scope="col">Total articulos</th>
+                    <th scope="col">Total pedido</th>
 
-</div>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">{{articulos}}</td>
+                    <td></td>
+                    <td>{{totalproductos}}uds.</td>
+                    <td>{{totalcompra}}€</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-success">Comprar</button>
 
 
-
-{% endblock %}
+    {% endblock %}
