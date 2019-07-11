@@ -5,9 +5,10 @@ namespace AdminBundle\Controller;
 use AdminBundle\Entity\Brand;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
-use Doctrine\Common\Collections\ArrayCollection;
+
 
 
 /**
@@ -64,7 +65,6 @@ class BrandController extends Controller
      * Finds and displays a brand entity.
      *
      * @Route("/{id}", name="brand_show")
-     * @Method("GET")
      */
     public function showAction(Brand $brand)
     {
@@ -104,19 +104,17 @@ class BrandController extends Controller
     /**
      * Deletes a brand entity.
      *
-     * @Route("/{id}", name="brand_delete")
-     * @Method("DELETE")
+     * @Route("/papa/{id}", name="brand_delete")
      */
     public function deleteAction(Request $request, Brand $brand)
     {
-        $form = $this->createDeleteForm($brand);
-        $form->handleRequest($request);
+       
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        
             $em = $this->getDoctrine()->getManager();
             $em->remove($brand);
             $em->flush();
-        }
+        
 
         return $this->redirectToRoute('brand_index');
     }

@@ -21,8 +21,11 @@
        
             <a class="btn btn-warning" href="{{ path('brand_edit', { 'id': brand.id }) }}">Edit</a>
         
-            {{ form_start(delete_form) }}
-                <input class="btn btn-danger" type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a class="btn btn-warning" href="{{ path('brand_delete', { 'id': brand.id }) }}">Delete</a>
+
+           
+            
+         
+
       
 {% endblock %}

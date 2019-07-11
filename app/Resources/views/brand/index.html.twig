@@ -21,7 +21,9 @@
                             <a class="btn btn-primary" href="{{ path('brand_show', { 'id': brand.id }) }}">show</a>
                         
                             <a class="btn btn-warning" href="{{ path('brand_edit', { 'id': brand.id }) }}">edit</a>
-                       
+
+                            <a class="btn btn-danger" href="{{ path('brand_delete', { 'id': brand.id }) }}">Delete</a>
+
                 </td>
             </tr>
         {% endfor %}
