@@ -8,8 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
 use ShopBundle\Entity\Cart;
-
-
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 
 /**
  * @Route("/cart")
@@ -20,10 +20,12 @@ class CartController extends Controller
     /**
      * @Route("/{user}", name="cart_user")
      */
-    public function indexAction($user)
+    public function indexAction($user, UserInterface $useractive)
     {   
        try{
         
+       if($user==$useractive)
+       {       
        $em = $this->getDoctrine()->getManager();
        $query = $em->createQuery('SELECT p.category AS categoria, p.price AS precio, c.quantityproduct AS cantidad, p.photo AS photo, p.id AS id
        FROM ShopBundle:Cart AS c, AdminBundle:Product AS p
@@ -31,8 +33,15 @@ class CartController extends Controller
        and c.iduser=:user')->setParameter('user', $user);
 
        $sunglasses= $query->getResult();       
-
+        
        return $this->render('@Shop/Default/cart.html.twig',['sunglasses'=>$sunglasses, 'totalcompra'=>0, 'totalproductos'=>0, 'articulos'=>0]);
+       }
+       else{
+           throw new AccessDeniedException('No te pases de listo');
+       }
+
+
+        
        }catch(Exception $e){
            return $e->getMessage();
        }     

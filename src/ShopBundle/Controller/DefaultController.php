@@ -44,6 +44,24 @@ class DefaultController extends Controller
         
     }
 
+    /**
+     * @Route("genre/{genre}")
+     */
+    public function genreProduct($genre)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AdminBundle:Product');
+
+
+        
+        $product = $repository->findBy(array('genre' => $genre));
+
+        if(!$product) return new Response("No existe producto");
+        
+        return $this->render('@Shop/Default/index.html.twig',['products'=>$product]);
+        
+    }
+
 
 
 }
