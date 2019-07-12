@@ -1,28 +1,35 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-   
-        <div class="row" style="padding:3em;">
 
-            {% for product in products%}
 
-                <div class="col-lg-4 col-md-6 col-sm-12" style="color:black; padding:2em;">
-                    <a href="/shop/{{product.id}}">
-                        <div class="card">
-                            <img alt="..." class="card-img-top" src="../img/{{product.photo}}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{product.product}}</h5>
-                                <p class="card-text text-center">{{product.price}}€</p>
-                            </div>
-                        </div>
-                    </a>
+
+<div class="row" style="padding:3em;">
+
+    <div class="col-md-12">
+        <img class="img-fluid" src="{{asset('img/imgcorporativa.png')}}" alt="">
+    </div>
+
+
+    {% for product in products%}
+
+    <div class="col-lg-4 col-md-6 col-sm-12" style="color:black; padding:2em;">
+        <a href="/shop/{{product.id}}">
+            <div class="card">
+                <img alt="..." class="card-img-top" src="../img/{{product.photo}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.product}}</h5>
+                    <p class="card-text text-center">{{product.price}}€</p>
                 </div>
+            </div>
+        </a>
+    </div>
 
-            {% endfor %}
-        </div>
-    
-            {% block javascripts %}        
-           
-            {% endblock %}
+    {% endfor %}
+</div>
+
+{% block javascripts %}
+
+{% endblock %}
 
 
 {% endblock %}
